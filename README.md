@@ -13,9 +13,10 @@ The structure is:
 
 All the projects have their respective repository
 
-DemoBackend
+- DemoBackend
  > This repository
-[DemoFrontend](https://github.com/Leonides2)
+
+- [DemoFrontend](https://github.com/Leonides2)
  > Click the link to go the repository
 
 ## Requirements
