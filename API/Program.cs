@@ -7,7 +7,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.WebHost.UseUrls(Environment.GetEnvironmentVariable("ASPNETCORE_URLS") ?? "http://localhost:5178");
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5178";
+builder.WebHost.UseUrls($"http://*:{port}");
+
 
 var app = builder.Build();
 
