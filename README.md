@@ -8,8 +8,8 @@ The structure is:
 - DemoBackend (as backend and DB)
     - API
     - Domain
-    - Persistence
-    - SQLite as persistance
+    - Features
+    - Infrastructure (SQLite as persistance)
 
 All the projects have their respective repository
 
