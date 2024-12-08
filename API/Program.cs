@@ -9,10 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.4
 
+var connectionString = Environment.GetEnvironmentVariable("DefaultConnection") ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlite(
+        connectionString
+        //builder.Configuration.GetConnectionString("DefaultConnection")
+        ));
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
@@ -21,7 +25,7 @@ builder.Services.AddMediatR(ctg =>
     ctg.RegisterServicesFromAssembly(typeof(CreateUserCommandHandler).Assembly);
 });
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 Console.WriteLine($"Using Connection String: {connectionString}");
 
 
