@@ -20,12 +20,13 @@ namespace Features.UserFolder.Commands
         public async Task<Unit> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             var User = new User{
-                Username = request.Username
+                Username = request.Username,
+                Score = request.Score
             };
 
             await _repository.AddAsync(User);
 
-            await _hub.Clients.All.SendAsync("User Created", User.Username, 0);
+            await _hub.Clients.All.SendAsync("User Created", User.Username, request.Score);
             return Unit.Value;
         }
     }

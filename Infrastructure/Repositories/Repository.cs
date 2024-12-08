@@ -36,7 +36,7 @@ namespace Infrastructure.Repositories
                 await _context.SaveChangesAsync();
             }
 
-            throw new Exception("The entity not exist in the db");
+            else throw new Exception("The entity not exist in the db");
 
         }
 
