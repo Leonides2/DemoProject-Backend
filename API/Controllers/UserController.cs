@@ -3,7 +3,6 @@ using Domain.Entities;
 using Features.UserFolder.Commands;
 using Features.UserFolder.Queries;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
