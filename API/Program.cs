@@ -21,6 +21,10 @@ builder.Services.AddMediatR(ctg =>
     ctg.RegisterServicesFromAssembly(typeof(CreateUserCommandHandler).Assembly);
 });
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+Console.WriteLine($"Using Connection String: {connectionString}");
+
+
 builder.Services.AddSignalR();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
