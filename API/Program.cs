@@ -1,13 +1,27 @@
+using Domain.Repositories;
+using Features.HubFolder;
+using Features.UserFolder.Commands;
+using Infrastructure.Persistance;
+using Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.4
 
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<MyDbContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
+builder.Services.AddMediatR(ctg =>
+{
+    ctg.RegisterServicesFromAssembly(typeof(CreateUserCommandHandler).Assembly);
+});
+
+builder.Services.AddSignalR();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -31,5 +45,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<UserHub>("/SignalR");
 
 app.Run();
