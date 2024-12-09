@@ -24,7 +24,7 @@ namespace Features.UserFolder.Commands
             var User = await _repository.GetByIdAsync(request.ID);
             await _repository.DeleteAsync( request.ID);
 
-            await _hub.Clients.All.SendAsync("User Deleted", User.Username, User.Score);
+            await _hub.Clients.All.SendAsync("User Created", User.Username, User.Score);
 
             return Unit.Value;
         }
