@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var origin = Environment.GetEnvironmentVariable("origin") ?? "http://localhost:5173";
 
-
+Console.WriteLine(origin);
 builder.Services.AddCors(
     options => {
         options.AddPolicy("All", builder => 
