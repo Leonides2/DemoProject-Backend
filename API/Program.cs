@@ -9,6 +9,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.4
 
+var origin = Environment.GetEnvironmentVariable("origin") ?? "http://localhost:5173";
+
+
+builder.Services.AddCors(
+    options => {
+        options.AddPolicy("All", builder => 
+            builder
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .WithOrigins(origin)
+            .AllowCredentials()
+        );
+    }
+);
+
 var connectionString = Environment.GetEnvironmentVariable("DefaultConnection") ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddControllers();
@@ -45,9 +60,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("All");
 
 app.MapControllers();
 
