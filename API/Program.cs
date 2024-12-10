@@ -43,6 +43,7 @@ builder.Services.AddMediatR(ctg =>
 
 builder.Services.AddSignalR();
 
+builder.Services.AddMemoryCache();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

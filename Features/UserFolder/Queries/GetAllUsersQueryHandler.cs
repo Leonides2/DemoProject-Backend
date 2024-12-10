@@ -17,8 +17,8 @@ namespace Features.UserFolder.Queries
         }
         public async Task<IEnumerable<User>> Handle(GetAllUsersQuery request, CancellationToken cancellationToken)
         {
-            
-            return await _repository.GetAllAsync();
+            var users = await _repository.GetAllAsync();
+            return users.Select(u=> u).OrderByDescending(u=> u.Score);
         }
     }
 }
