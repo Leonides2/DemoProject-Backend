@@ -28,7 +28,7 @@ var connectionString = Environment.GetEnvironmentVariable("DefaultConnection") ?
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(
+    options.UseNpgsql(
         connectionString
         //builder.Configuration.GetConnectionString("DefaultConnection")
         ));
