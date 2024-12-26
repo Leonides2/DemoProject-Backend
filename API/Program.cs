@@ -15,7 +15,7 @@ using Shared.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.4
+// Add services to the container.
 
 var origin = Environment.GetEnvironmentVariable("origin") ?? "http://localhost:5173";
 var secret = builder.Configuration["JwtSettings:Key"] ?? "thisadefaultsecret";

@@ -13,7 +13,6 @@ WORKDIR /src
 # Copia todos los archivos del monorepositorio
 COPY . .
 
-COPY ./mydatabase.db /app/mydatabase.db 
 # Restaura y construye el proyecto principal API y sus dependencias
 WORKDIR /src/API
 RUN dotnet restore
@@ -23,7 +22,6 @@ RUN dotnet publish -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
-COPY --from=build /app/mydatabase.db  /app/mydatabase.db 
 
 # Punto de entrada al contenedor
 ENTRYPOINT ["dotnet", "API.dll"]

@@ -1,8 +1,6 @@
 
 
-using Features.DTOs;
 using Features.LoginFolder.Commands;
-using Features.UserFolder.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,6 +29,6 @@ namespace API.Controllers
                 new {response = data}
             );
         }
-        
+
     }
 }
