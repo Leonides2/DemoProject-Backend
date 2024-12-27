@@ -1,5 +1,6 @@
 
 
+using Features.DTOs;
 using Features.LoginFolder.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,7 @@ namespace API.Controllers
             var data = await _mediator.Send(command);
 
             return Ok( 
-                new {response = data}
+                new LoginResponseDto {Token = data}
             );
         }
 
